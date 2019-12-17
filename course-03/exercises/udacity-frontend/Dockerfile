@@ -1,5 +1,7 @@
-FROM beevelop/ionic AS ionic
+FROM node:12 AS ionic
 WORKDIR /usr/src/app
+
+RUN npm i -g ionic
 
 COPY package*.json ./
 
