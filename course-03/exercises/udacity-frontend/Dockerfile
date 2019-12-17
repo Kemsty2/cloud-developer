@@ -5,7 +5,7 @@ COPY package*.json ./
 
 RUN npm ci
 
-COPY . .s
+COPY . .
 
 RUN ionic build
 
