@@ -9,6 +9,8 @@ RUN npm ci
 
 COPY . .
 
+RUN rm -rf www/
+
 RUN ionic build
 
 FROM nginx:alpine

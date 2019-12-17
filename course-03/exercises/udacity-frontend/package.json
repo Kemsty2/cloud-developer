@@ -5,7 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng run app:serve --host=127.0.0.1 --port=8100",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
