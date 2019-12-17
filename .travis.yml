@@ -1,1 +1,42 @@
 language: minimal
+
+services: docker
+
+env: 
+    - DOCKER_COMPOSE_VERSION=1.4.2
+
+before_install:
+    - sudo rm /usr/local/bin/docker-compose
+    - curl - L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+    - chmod +x docker-compose
+    - sudo mv docker-compose /usr/local/bin
+    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    - chmod +x ./kubectl
+    - sudo mv ./kubectl /usr/local/bin/kubectl
+
+stages:
+    - test
+    - name: compile_dev
+      if: branch = dev
+    - name: compile_prod
+      if: branch = master
+    - name: deploy_dev
+      if: branch = dev
+    - name: deploy_prod
+      if: branch = master
+
+jobs:
+    include:
+        - stage: test
+          script: 
+            - docker -v && docker-compose -v
+            - echo "Running on test stage"
+        - stage: compile
+          script:
+            - echo "Running on compile stage"
+        - stage: deploy_dev
+          script:
+            - echo "Running on deploy_dev stage"
+        - stage: deploy_prod
+          script:
+            - echo "Running on deploy_dev stage"
