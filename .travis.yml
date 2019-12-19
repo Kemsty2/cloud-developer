@@ -16,9 +16,9 @@ before_install:
 
 stages:
     - test
-    - name: compile_dev
+    - name: building_dev
       if: branch = dev
-    - name: compile_prod
+    - name: building_prod
       if: branch = master
     - name: deploy_dev
       if: branch = dev
@@ -31,12 +31,11 @@ jobs:
           script: 
             - docker -v && docker-compose -v
             - echo "Running on test stage"
-        - stage: compile
-          script:
-            - echo "Running on compile stage"
+        - stage: building_dev
+          script: ./build-image-dev.sh            
+        - stage: building_prod
+          script: ./build-image-prod.sh            
         - stage: deploy_dev
-          script:
-            - echo "Running on deploy_dev stage"
+          script: ./deploy_dev.sh            
         - stage: deploy_prod
-          script:
-            - echo "Running on deploy_dev stage"
+          script: ./deploy_prod.sh            

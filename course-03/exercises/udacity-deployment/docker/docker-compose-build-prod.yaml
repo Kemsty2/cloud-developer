@@ -1,0 +1,18 @@
+version: "3"
+services: 
+    reverseproxy:
+        build:
+            context: .
+        image: kemsty2/reverseproxy:prod
+    backend_user:
+        build: 
+            context: ../../udacity-restapi-user
+        image: kemsty2/udacity-restapi-user:prod
+    backend_feed:
+        build: 
+            context: ../../udacity-restapi-feed
+        image: kemsty2/udacity-restapi-feed:prod
+    frontend:
+        build: 
+            context: ../../udacity-frontend
+        image: kemsty2/frontend:prod
