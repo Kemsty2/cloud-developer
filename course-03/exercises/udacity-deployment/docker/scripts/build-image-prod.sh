@@ -6,7 +6,7 @@ set -ev
 docker-compose -f $PWD/course-03/exercises/udacity-deployment/docker/docker-compose-build-prod.yaml build
 
 #   login to docker registry
-docker login --password $DOCKER_REGISTRY_PASSWORD -username $DOCKER_REGISTRY_USERNAME
+echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin
 
 #   push all the images of my project to docker registry
 docker push kemsty2/frontend:prod
