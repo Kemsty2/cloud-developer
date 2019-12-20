@@ -13,6 +13,7 @@ before_install:
     - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
     - chmod +x ./kubectl
     - sudo mv ./kubectl /usr/local/bin/kubectl
+    - echo $PWD
 
 stages:
     - test
@@ -32,10 +33,10 @@ jobs:
             - docker -v && docker-compose -v
             - echo "Running on test stage"
         - stage: building_dev
-          script: ./course-03/exercices/udacity-deployment/docker/scripts/build-image-dev.sh            
+          script: ./cloud-developer/course-03/exercices/udacity-deployment/docker/scripts/build-image-dev.sh            
         - stage: building_prod
-          script: ./course-03/exercices/udacity-deployment/docker/scripts/build-image-prod.sh            
+          script: ./cloud-developer/course-03/exercices/udacity-deployment/docker/scripts/build-image-prod.sh            
         - stage: deploy_dev
-          script: ./course-03/exercices/udacity-deployment/docker/scripts/deploy_dev.sh            
+          script: ./cloud-developer/course-03/exercices/udacity-deployment/docker/scripts/deploy_dev.sh            
         - stage: deploy_prod
-          script: ./course-03/exercices/udacity-deployment/docker/scripts/deploy_prod.sh            
+          script: ./cloud-developer/course-03/exercices/udacity-deployment/docker/scripts/deploy_prod.sh            
