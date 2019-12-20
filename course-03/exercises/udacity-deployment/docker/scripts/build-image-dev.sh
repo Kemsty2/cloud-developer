@@ -1,5 +1,9 @@
+#!/bin/bash
+
+set -ev
+
 #   build all images using docker-compose-build file
-cd course-03/exercises/udacity-deployment/docker/ && docker-compose -f docker-compose-build-dev.yaml build
+docker-compose -f $PWD/course-03/exercises/udacity-deployment/docker/docker-compose-build-dev.yaml build
 
 #   login to docker registry
 docker login --password $DOCKER_REGISTRY_PASSWORD -username $DOCKER_REGISTRY_USERNAME

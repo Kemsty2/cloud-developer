@@ -32,10 +32,10 @@ jobs:
             - docker -v && docker-compose -v
             - echo "Running on test stage"
         - stage: building_dev
-          script: ./build-image-dev.sh            
+          script: ./course-03/exercices/udacity-deployment/docker/scripts/build-image-dev.sh            
         - stage: building_prod
-          script: ./build-image-prod.sh            
+          script: ./course-03/exercices/udacity-deployment/docker/scripts/build-image-prod.sh            
         - stage: deploy_dev
-          script: ./deploy_dev.sh            
+          script: ./course-03/exercices/udacity-deployment/docker/scripts/deploy_dev.sh            
         - stage: deploy_prod
-          script: ./deploy_prod.sh            
+          script: ./course-03/exercices/udacity-deployment/docker/scripts/deploy_prod.sh            
