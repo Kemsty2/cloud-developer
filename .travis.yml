@@ -1,42 +1,43 @@
 language: minimal
-
 services: docker
-
-env: 
-    - DOCKER_COMPOSE_VERSION=1.25.0
-
+env:
+- DOCKER_COMPOSE_VERSION=1.25.0
 before_install:
-    - sudo rm /usr/local/bin/docker-compose
-    - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-    - chmod +x docker-compose
-    - sudo mv docker-compose /usr/local/bin
-    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-    - chmod +x ./kubectl
-    - sudo mv ./kubectl /usr/local/bin/kubectl
-    - echo $PWD
-
+- mkdir ~/.kube
+- openssl aes-256-cbc -K $encrypted_9c67cf872872_key -iv $encrypted_9c67cf872872_iv
+  -in config.enc -out config -d
+- cp config ~/.kube/config
+- sudo rm /usr/local/bin/docker-compose
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  -s`-`uname -m` > docker-compose
+- chmod +x docker-compose
+- sudo mv docker-compose /usr/local/bin
+- curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+- chmod +x ./kubectl
+- sudo mv ./kubectl /usr/local/bin/kubectl
 stages:
-    - test
-    - name: building_dev
-      if: branch = dev
-    - name: building_prod
-      if: branch = master
-    - name: deploy_dev
-      if: branch = dev
-    - name: deploy_prod
-      if: branch = master
-
+- test
+- name: building_dev
+  if: branch = dev
+- name: building_prod
+  if: branch = master
+- name: deploy_dev
+  if: branch = dev
+- name: deploy_prod
+  if: branch = master
 jobs:
-    include:
-        - stage: test
-          script: 
-            - docker -v && docker-compose -v
-            - echo "Running on test stage"
-        - stage: building_dev
-          script: ./course-03/exercises/udacity-deployment/docker/scripts/build-image-dev.sh            
-        - stage: building_prod
-          script: ./course-03/exercises/udacity-deployment/docker/scripts/build-image-prod.sh            
-        - stage: deploy_dev
-          script: ./course-03/exercises/udacity-deployment/docker/scripts/deploy-dev.sh            
-        - stage: deploy_prod
-          script: ./course-03/exercises/udacity-deployment/docker/scripts/deploy-prod.sh            
+  include:
+  - stage: test
+    script:
+    - docker -v && docker-compose -v
+    - echo "Running on test stage"
+  - stage: building_dev
+    script: "./course-03/exercises/udacity-deployment/docker/scripts/build-image-dev.sh"
+  - stage: building_prod
+    script: "./course-03/exercises/udacity-deployment/docker/scripts/build-image-prod.sh"
+  - stage: deploy_dev
+    before_script: 
+    - kubectl get pod 
+    script: "./course-03/exercises/udacity-deployment/docker/scripts/deploy-dev.sh"
+  - stage: deploy_prod
+    script: "./course-03/exercises/udacity-deployment/docker/scripts/deploy-prod.sh"
