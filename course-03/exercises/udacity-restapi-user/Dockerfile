@@ -7,4 +7,4 @@ RUN npm ci
 
 COPY . .
 EXPOSE 8080
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "prod"]
