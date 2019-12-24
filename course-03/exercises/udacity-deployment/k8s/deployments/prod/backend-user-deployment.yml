@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app: backend-user
+      version: prod
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,6 +18,7 @@ spec:
     metadata:
       labels:
         app: backend-user
+        version: prod
     spec:
       containers:
       - name: backend-user

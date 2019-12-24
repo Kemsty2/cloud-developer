@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app: reverseproxy
+      version: prod
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,6 +18,7 @@ spec:
     metadata:
       labels:
         app: reverseproxy
+        version: prod
     spec:
       containers:
       - name: reverseproxy
