@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -21,17 +21,17 @@ spec:
         version: prod
     spec:
       containers:
-        - name: frontend
-          image: kemsty2/frontend:prod
-          imagePullPolicy: Always
-          resources:
-            requests:
-              memory: "64Mi"
-              cpu: "250m"
-            limits:
-              memory: "1024Mi"
-              cpu: "500m"
-          ports:
-            - containerPort: 80
+      - name: frontend
+        image: kemsty2/frontend:prod
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
       restartPolicy: Always
       dnsPolicy: ClusterFirst

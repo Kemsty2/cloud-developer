@@ -2,8 +2,8 @@
 
 set -ev
 
-#   Create deployment object
-kubectl apply -f $PWD/course-03/exercises/udacity-deployment/k8s/deployments/prod
-
 #   Create service object
 kubectl apply -f $PWD/course-03/exercises/udacity-deployment/k8s/services/prod
+
+#   Create deployment object
+kubectl apply -f $PWD/course-03/exercises/udacity-deployment/k8s/deployments/prod
