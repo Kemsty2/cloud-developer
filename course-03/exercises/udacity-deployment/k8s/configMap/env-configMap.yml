@@ -1,12 +1,12 @@
 apiVersion: v1
-kind: configMap
+kind: ConfigMap
 metadata:
   name: env-config
 data:
-  AWS_BUCKET: $AWS_BUCKET
-  AWS_PROFILE: $AWS_PROFILE
-  AWS_REGION: $AWS_REGION
-  JWT_SECRET: $JWT_SECRET
-  POSTGRESS_DB: $POSTGRESS_DB
-  POSTGRESS_HOST: $POSTGRESS_HOST
+  AWS_BUCKET: udagram-kemsty-dev
+  AWS_PROFILE: default
+  AWS_REGION: us-east-1
+  JWT_SECRET: qskldjqsldkjlsqdjmlkj
+  POSTGRESS_DB: udagramdbdev
+  POSTGRESS_HOST: udagramkemstydbdev.cnna1eeyuhad.us-east-2.rds.amazonaws.com
   URL: http://localhost:8100

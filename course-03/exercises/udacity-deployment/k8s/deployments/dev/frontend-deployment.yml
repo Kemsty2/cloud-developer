@@ -1,14 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reverseproxy
+  name: frontend
   labels:
-    app: reverseproxy
+    app: frontend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: reverseproxy
+      app: frontend
+      version: dev
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -16,11 +17,12 @@ spec:
   template:
     metadata:
       labels:
-        app: reverseproxy
+        app: frontend
+        version: dev
     spec:
       containers:
-        - name: reverseproxy
-          image: kemsty2/reverseproxy
+        - name: frontend
+          image: kemsty2/frontend:dev
           imagePullPolicy: Always
           resources:
             requests:
@@ -30,6 +32,6 @@ spec:
               memory: "1024Mi"
               cpu: "500m"
           ports:
-            - containerPort: 8080
+            - containerPort: 80
       restartPolicy: Always
       dnsPolicy: ClusterFirst

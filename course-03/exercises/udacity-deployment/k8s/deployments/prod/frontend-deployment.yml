@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app: frontend
+      version: prod
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,10 +18,11 @@ spec:
     metadata:
       labels:
         app: frontend
+        version: prod
     spec:
       containers:
         - name: frontend
-          image: kemsty2/frontend
+          image: kemsty2/frontend:prod
           imagePullPolicy: Always
           resources:
             requests:

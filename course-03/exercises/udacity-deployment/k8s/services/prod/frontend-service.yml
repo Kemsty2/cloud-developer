@@ -6,6 +6,7 @@ metadata:
 spec:
   selector:
     app: frontend
+    version: prod
   ports:
     - name: "8100"
       port: 80
