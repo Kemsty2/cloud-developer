@@ -32,12 +32,12 @@ jobs:
     - docker -v && docker-compose -v
     - echo "Running on test stage"
   - stage: building_dev
-    script: "./course-03/exercises/udacity-deployment/docker/scripts/build-image-dev.sh"
+    script: "./course-03/exercises/udacity-deployment/scripts/build-image-dev.sh"
   - stage: building_prod
-    script: "./course-03/exercises/udacity-deployment/docker/scripts/build-image-prod.sh"
+    script: "./course-03/exercises/udacity-deployment/scripts/build-image-prod.sh"
   - stage: deploy_dev
     before_script:
     - kubectl get pod
-    script: "./course-03/exercises/udacity-deployment/docker/scripts/deploy-dev.sh"
+    script: "./course-03/exercises/udacity-deployment/scripts/deploy-dev.sh"
   - stage: deploy_prod
-    script: "./course-03/exercises/udacity-deployment/docker/scripts/deploy-prod.sh"
+    script: "./course-03/exercises/udacity-deployment/scripts/deploy-prod.sh"
