@@ -8,6 +8,6 @@ data:
   AWS_REGION: us-east-1
   JWT_SECRET: qskldjqsldkjlsqdjmlkj
   POSTGRESS_DB: udagramdbdev
-  POSTGRESS_HOST: udagramkemstydbdev.cnna1eeyuhad.us-east-2.rds.amazonaws.com
+  POSTGRESS_HOST: mysql
   URL: http://localhost:8100
 
