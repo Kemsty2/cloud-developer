@@ -8,5 +8,5 @@ spec:
     version: dev
   ports:
     - name: "8100"
-      port: 80
-      targetPort: 8100
+      port: 8100
+      targetPort: 80
