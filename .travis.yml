@@ -3,6 +3,7 @@ services: docker
 env:
 - DOCKER_COMPOSE_VERSION=1.25.0
 before_install:
+- mkdir ~/.kube
 - openssl aes-256-cbc -K $encrypted_9c67cf872872_key -iv $encrypted_9c67cf872872_iv
   -in config.enc -out ~\/.kube/config -d
 - sudo rm /usr/local/bin/docker-compose
