@@ -1,11 +1,11 @@
 export const config = {
   "dev": {
-    "username": "udagramdbdev",
-    "password": "udagramdbdev",
-    "database": "udagramdbdev",
-    "host": "udagramkemstydbdev.cnna1eeyuhad.us-east-2.rds.amazonaws.com",
+    "username": process.env.POSTGRESS_USERNAME,
+    "password": process.env.POSTGRESS_PASSWORD,
+    "database": process.env.POSTGRESS_DB,
+    "host": process.env.POSTGRESS_HOST,
     "dialect": "postgres",    
-    "url": "http://localhost:8100"
+    "url": process.env.URL
   },
   "prod": {
     "username": "",
