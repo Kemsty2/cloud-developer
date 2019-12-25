@@ -10,6 +10,7 @@ services:
             - backend-feed
     backend-user:
         image: kemsty2/udacity-restapi-user:dev
+        restart: always
         environment: 
             POSTGRESS_USERNAME: $POSTGRESS_USERNAME
             POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD 
@@ -22,6 +23,7 @@ services:
             URL: "http://157.245.172.36:8100"
     backend-feed: 
         image: kemsty2/udacity-restapi-feed:dev
+        restart: always
         volumes:
             - $HOME/.aws:/root/.aws
         environment: 
